@@ -1,0 +1,86 @@
+<div class = "searchbar">
+      <form class="form form-inline" role="form">
+          <div class="form-group">
+              <div class="col-sm-110">
+                  {{input type="text" class="form-control" id="search" placeholder="Type task Title to search" size="120"
+                  value = searchitem}}
+              </div>
+          </div>
+      </form>
+    </div> <br>
+    <div id="create-item">
+      {{#link-to "create" class="btn btn-primary btn-md"}}
+          <span class="glyphicon glyphicon-plus"></span>
+          New Task
+      {{/link-to}}
+    </div> <br>
+    <div id="itemlist">
+        <table data-card-view="true" data-url="/gh/get/response.json/wenzhixin/bootstrap-table/tree/master/docs/data/data1/"
+               data-toggle="table" class="table table-hover" style="margin-top: 0px;">
+            <thead style="display: none;">
+            <tr>
+                <th style=""><div class="th-inner ">Title</div><div class="fht-cell"></div></th>
+                <th style=""><div class="th-inner ">Summery</div><div class="fht-cell"></div></th>
+                <th style=""><div class="th-inner ">Deadline</div><div class="fht-cell"></div></th>
+                <th style=""><div class="th-inner ">Status</div><div class="fht-cell"></div></th>
+            </tr>
+            </thead>
+            <tbody>
+              {{#each item in filteredModel }}
+                    <tr data-index="0">
+                        <td colspan="4">
+                            <div class="card-view">
+                                <span class="value">{{getIndex}} {{item.title}}</span>
+                            </div>
+                            <div class="card-view">
+                                <span class="value">{{item.summery}}</span>
+                            </div>
+                            <div class="card-view">
+                                <span class="value">
+                                    This Task is <strong> {{item.status}} </strong>with deadline<strong>
+                                  {{item.deadline}}</strong>
+                                </span>
+                            </div>
+                            <div class="card-view">
+                                <button class="btn btn-primary btn-xs" {{action "edit" item }}>
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                                <button class="btn btn-primary btn-xs" {{action "delete" item }}>
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </div>
+                        </td>
+
+                        <div id="myModal" class="modal fade">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            &times;
+                                        </button>
+                                        <h4 class="modal-title">Confirmation</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Do you really want to delete this task?</p>
+                                        <p class="text-warning"><small>Hit cancel if you did it by mistake</small></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" {{action "cancelDelete"}}>
+                                            Cancel
+                                        </button>
+                                        <button type="button" class="btn btn-primary" {{action "confirmDelete" item}}>
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tr>
+              {{else}}
+                  <p class="text-danger text-justify">
+                      <strong> We have not found any task you may want to create a new one.</strong>
+                  </p>
+              {{/each}}
+            </tbody>
+        </table>
+    </div>

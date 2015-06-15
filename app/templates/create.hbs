@@ -1,0 +1,40 @@
+<div class="user-edit">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="Title">Item Title </label>
+            <div class="col-sm-10">
+              {{input value=model.title type="text" class="form-control" id="item_title" placeholder="Enter Item Title"}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="summery">Summery</label>
+            <div class="col-sm-10">
+                {{input value=model.summery type="text" class="form-control" id="item_summery" placeholder="Enter Brief summery"}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="deadline">Set Deadline</label>
+            <div class='col-sm-3' id='datetimepicker1'>
+              {{bootstrap-datepicker autoclose=true placeholder="Click to select deadline" class="form-control" value=model.deadline}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="Status">Status</label>
+          <div class="col-sm-2">
+            {{view "select"  content=status class="form-control" value = model.status}}
+          </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary" {{action "save"}}>
+                    <span class="glyphicon glyphicon-save"></span>
+                    Save
+                </button>
+                <button type="submit" class="btn btn-primary" {{action "cancel"}}>
+                    <span class="glyphicon glyphicon-remove-sign"></span>
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
