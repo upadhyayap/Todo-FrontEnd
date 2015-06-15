@@ -6,11 +6,11 @@ import Ember from 'ember';
 export default Ember.ArrayController.extend({
   sortProperties: ['deadline'],
   sortAscending : true,
-  rowCount: 0,
-  getIndex: function () {
+  rowCount: 1,
+/*  getIndex: function () {
     //Ember.Logger.log(this.get('index'));
-    return this.rowCount++ ;
-  }.property('contentIndex'),
+    return this._parentView.contentIndex;
+  }.property('model.title'),*/
   filteredModel: function(){
     Ember.Logger.log('filteredModel Called');
     var index = 1;
