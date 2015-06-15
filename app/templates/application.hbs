@@ -1,5 +1,9 @@
 <div class="container">
-    <div id = "msg"> </div>
+    <div class="notifications-container">
+      {{#each notifications as |notification|}}
+        {{notification-message notification=notification}}
+      {{/each}}
+    </div>
     <h1 class="page-header"><span class="text-primary">TO DO Task Manager</span></h1>
   {{outlet}}
 </div>

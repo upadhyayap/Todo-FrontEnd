@@ -32,7 +32,6 @@ export default Ember.ArrayController.extend({
     edit: function(item){
       this.transitionToRoute('edit',item);
       Ember.Logger.log('route completed to edit');
-
     },
     delete: function(item){
         $('#myModal').modal('show');
@@ -44,6 +43,11 @@ export default Ember.ArrayController.extend({
       item.deleteRecord();
       item.save();
       $('#myModal').modal('hide');
+      this.notifications.addNotification({
+        message: 'Task deleted',
+        type: 'success',
+        autoClear: true
+      });
     }
   }
 

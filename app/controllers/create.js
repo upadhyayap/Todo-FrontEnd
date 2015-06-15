@@ -10,12 +10,30 @@ export default Ember.Controller.extend({
 
       // create a record and save it to the store
       var newItem =  this.get('model');
-      newItem.save();
-      // redirects to the index itself
-      this.transitionToRoute('index');
+      //newItem.save().then();
+      var controller = this;
+      newItem.save().then(function(value) {
+        controller.notifications.addNotification({
+          message: 'New task has been created ',
+          type: 'success',
+          autoClear: true
+        });
+        controller.transitionToRoute('index');
+      }, function(err) {
+        controller.notifications.addNotification({
+          message: 'Error in saving Task details ',
+          type: 'error',
+          autoClear: true
+        });
+      });
     },
     cancel: function() {
       this.get('model').deleteRecord();
+      this.notifications.addNotification({
+        message: 'New task cancelled ',
+        type: 'warning',
+        autoClear: true
+      });
       this.transitionToRoute('index');
     }
   }
