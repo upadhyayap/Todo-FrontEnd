@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('controller:common/status-notification', {
+moduleFor('controller:index', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

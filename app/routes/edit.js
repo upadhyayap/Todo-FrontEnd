@@ -12,9 +12,7 @@ export default Ember.Route.extend({
 
     });
   },
-  model: function(item) {
-    Ember.Logger.log('inside model hook of edit route');
-    Ember.Logger.log(item.title);
-    return this.store.find('item', item.title);
+  model: function(params) {
+    return this.store.find('item', params.id);
   }
 });
